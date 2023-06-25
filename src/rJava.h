@@ -1,7 +1,7 @@
 #ifndef __RJAVA_H__
 #define __RJAVA_H__
 
-#define RJAVA_VER 0x010007 /* rJava v1.0-7 */
+#define RJAVA_VER 0x010008 /* rJava v1.0-8 */
 
 /* important changes between versions:
    3.0  - adds compiler
@@ -135,6 +135,14 @@ REPC SEXP RgetSimpleClassNames( SEXP, SEXP );
 /* in init.c */
 extern JavaVM *jvm;
 extern int rJava_initialized;
+
+#define JVM_STATE_NONE      0  /* no JVM */
+#define JVM_STATE_CREATED   1  /* JVM was created by us */
+#define JVM_STATE_ATTACHED  2  /* we attached to another JVM */
+#define JVM_STATE_DEAD      4  /* set when Java exit handler was called */
+#define JVM_STATE_DESTROYED 8  /* JVM was destroyed */
+
+extern int rJava_JVM_state;
 
 extern int java_is_dead;
 
